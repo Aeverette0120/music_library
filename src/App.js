@@ -2,6 +2,7 @@ import './App.css';
 import { useEffect, useState } from "react"
 import Gallery from './components/Gallery';
 import SearchBar from './components/SearchBar';
+import { DataContext } from './contexts/DataContext';
 
 
 const App =() => {
@@ -10,6 +11,7 @@ const App =() => {
   const [data, setData] =  useState ([])
 
   const API_URL = 'https://itunes.apple.com/search?term='
+
   useEffect( () => {
     if (search) {
     const fetchData = async () => {
@@ -33,8 +35,12 @@ const App =() => {
   return (
     <div className="App">
       <SearchBar handleSearch={handleSearch} />
-      <Gallery data={data} />
       { message }
+      <DataContext.Provider value={data}>
+      <Gallery data={data} />
+      </DataContext.Provider>
+      
+      
     </div>
   );
 }

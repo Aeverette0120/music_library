@@ -2,10 +2,13 @@ import {
   useRef,
    useState 
   } from "react"
+  import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Gallery from './components/Gallery';
 import SearchBar from './components/SearchBar';
 import { DataContext } from './contexts/DataContext';
 import { SearchContext } from './SearchContext';
+import AlbumView from "./components/AlbumView";
+import ArtistView from "./components/ArtistView";
 import './App.css';
 
 const App =() => {
@@ -39,7 +42,6 @@ const App =() => {
 }}>
       <SearchBar handleSearch={handleSearch} />
       </SearchContext.Provider>
-      {/* <button onClick={ () => clearResults()}>Clear</button> */}
       { message }
       <DataContext.Provider value={data}>
       <Gallery data={data} />
